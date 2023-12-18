@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 import pdfplumber
+import(‘pysqlite3’) import sys sys.modules[‘sqlite3’] = sys.modules.pop(‘pysqlite3’)
 from dotenv import load_dotenv
 import openai
 from langchain.document_loaders import TextLoader
