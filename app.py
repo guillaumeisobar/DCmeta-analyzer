@@ -52,7 +52,7 @@ def chunk_text(text, chunk_size=1500):
 # Summarize a single chunk
 def summarize_chunk(chunk):
     response = openai.Completion.create(
-        model="text-curie-001",
+        model="gpt-3.5-turbo-instruct",
         prompt="Summarize the following text:\n\n" + chunk,
         max_tokens=150,
         temperature=0.7
