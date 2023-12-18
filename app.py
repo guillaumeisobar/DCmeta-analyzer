@@ -7,6 +7,7 @@ import streamlit as st
 from streamlit import logger
 # import sqlite3
 
+from tenacity import retry, stop_after_attempt, wait_random_exponential
 import os
 import pdfplumber
 from dotenv import load_dotenv
@@ -50,14 +51,18 @@ def chunk_text(text, chunk_size=900):
     return chunks
 
 # Summarize a single chunk
+@retry(wait=wait_random_exponential(multiplier=1, max=60), stop=stop_after_attempt(5))
 def summarize_chunk(chunk):
-    response = openai.Completion.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt="Summarize the following text:\n\n" + chunk,
-        max_tokens=90,
-        temperature=0.7
-    )
-    return response.choices[0].text.strip()
+    try:
+        response = openai.Completion.create(
+            model="gpt-3.5-turbo-instruct",
+            prompt="Summarize the following text:\n\n" + chunk,
+            max_tokens=90,
+            temperature=0.7
+        )
+        return response.choices[0].text.strip()
+    except openai.error.RateLimitError as e:
+        raise
 
 # Function to summarize text with progress bar
 def summarize_text(text):
