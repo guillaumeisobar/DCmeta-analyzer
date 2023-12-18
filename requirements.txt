@@ -8,6 +8,6 @@ python-multipart
 tiktoken
 pdfplumber
 langchain
-chromadb==0.3.29
+chromadb
 tqdm
 streamlit
