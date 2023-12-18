@@ -101,7 +101,7 @@ def handle_question(query, summarized_text):
 
 # Streamlit App
 def main():
-    st.title("PDF Summarizer and Q&A Tool")
+    st.title("DENTSU CREATIVE META ANALYZER")
 
     uploaded_files = st.file_uploader("Upload PDFs", accept_multiple_files=True, type=['pdf'])
     
