@@ -54,7 +54,7 @@ def summarize_chunk(chunk):
     response = openai.Completion.create(
         model="gpt-3.5-turbo-instruct",
         prompt="Summarize the following text:\n\n" + chunk,
-        max_tokens=150,
+        max_tokens=90,
         temperature=0.7
     )
     return response.choices[0].text.strip()
