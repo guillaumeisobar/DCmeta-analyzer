@@ -1,3 +1,4 @@
+pysqlite3-binary
 openai
 llmx
 cohere
@@ -10,4 +11,3 @@ langchain
 chromadb
 tqdm
 streamlit
-pysqlite3-binary
