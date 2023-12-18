@@ -22,7 +22,17 @@ from langchain.chat_models import ChatOpenAI
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-# Function to process PDFs
+#function to remove duplicate content
+def condense_text(text):
+    sentences = set()
+    condensed = []
+    for sentence in text.split('.'):
+        trimmed_sentence = sentence.strip()
+        if trimmed_sentence and trimmed_sentence not in sentences:
+            condensed.append(trimmed_sentence)
+            sentences.add(trimmed_sentence)
+    return '. '.join(condensed)
+
 def process_pdfs(uploaded_files):
     pdf_texts = []
     for uploaded_file in uploaded_files:
@@ -31,6 +41,7 @@ def process_pdfs(uploaded_files):
                 for page in pdf.pages:
                     page_text = page.extract_text()
                     if page_text:
+                        page_text = condense_text(page_text)  # Call the condense_text function here
                         pdf_texts.append(page_text)
         except Exception as e:
             st.error(f"Error processing {uploaded_file.name}: {e}")
