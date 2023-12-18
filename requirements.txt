@@ -1,0 +1,12 @@
+openai
+llmx
+cohere
+kaleido
+lida
+python-multipart
+tiktoken
+pdfplumber
+langchain
+chromadb
+tqdm
+streamlit
