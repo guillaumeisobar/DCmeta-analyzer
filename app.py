@@ -48,7 +48,7 @@ def process_pdfs(uploaded_files):
     return "\n".join(pdf_texts)
 
 # Logical chunk text function
-def chunk_text(text, chunk_size=1500):
+def chunk_text(text, chunk_size=500):
     paragraphs = text.split('\n')
     chunks = []
     current_chunk = ""
@@ -73,7 +73,7 @@ def summarize_chunk(chunk):
             model="gpt-3.5-turbo-instruct",
             prompt="Summarize the following text:\n\n" + chunk,
             max_tokens=90,
-            temperature=0.7
+            temperature=0.2
         )
         return response.choices[0].text.strip()
     except openai.error.RateLimitError as e:
