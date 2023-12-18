@@ -10,3 +10,4 @@ langchain
 chromadb
 tqdm
 streamlit
+pysqlite3-binary
