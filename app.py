@@ -37,23 +37,18 @@ def process_pdfs(uploaded_files):
     return "\n".join(pdf_texts)
 
 # Logical chunk text function
-def chunk_text(text, max_chunk_size=900):
-    
-    paragraphs = text.split('\n')  # Splitting text into paragraphs or lines.
+def chunk_text(text, chunk_size=1500):
+    paragraphs = text.split('\n')
     chunks = []
     current_chunk = ""
 
     for paragraph in paragraphs:
-        # Check if adding this paragraph exceeds the max chunk size
-        if len(current_chunk) + len(paragraph) > max_chunk_size and current_chunk:
-            # If it does, add the current chunk to the chunks list
+        if len(current_chunk) + len(paragraph) > chunk_size and current_chunk:
             chunks.append(current_chunk)
             current_chunk = paragraph
         else:
-            # If not, add the paragraph to the current chunk
             current_chunk += '\n' + paragraph if current_chunk else paragraph
     
-    # Add the last chunk if it's not empty
     if current_chunk:
         chunks.append(current_chunk)
 
