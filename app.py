@@ -36,7 +36,7 @@ def process_pdfs(uploaded_files):
     return "\n".join(pdf_texts)
 
 # Chunk text function
-def chunk_text(text, chunk_size=1500):
+def chunk_text(text, chunk_size=900):
     chunks = []
     current_chunk = ""
     for paragraph in text.split('\n'):
@@ -61,7 +61,7 @@ def summarize_chunk(chunk):
 
 # Function to summarize text with progress bar
 def summarize_text(text):
-    chunks = chunk_text(text, chunk_size=1500)
+    chunks = chunk_text(text, chunk_size=500)
     total_chunks = len(chunks)
     progress_bar = st.progress(0)
     summaries = []
