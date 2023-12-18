@@ -2,7 +2,7 @@ import os
 import streamlit as st
 import pdfplumber
 import pysqlite3
-sys.modules['sqlite3'] = pysqlite3  
+sys.modules['sqlite3'] = pysqlite3 
 from dotenv import load_dotenv
 import openai
 from langchain.document_loaders import TextLoader
